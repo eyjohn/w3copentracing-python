@@ -8,4 +8,5 @@ setup(name='w3copentracing',
       author_email='evgeny@evdev.me',
       license='Apache License Version 2.0',
       packages=['w3copentracing'],
+      install_requires=['opentracing>=2.3.0'],
       zip_safe=False)
