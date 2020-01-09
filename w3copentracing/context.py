@@ -28,6 +28,9 @@ class SpanContext(opentracing.SpanContext):
                 f' baggage={self.baggage!r})')
 
 
-def generate_span_context(sampled: bool = True,
-                          baggage: Optional[Dict[str, str]] = None) -> SpanContext:
-    return SpanContext(secrets.token_bytes(16), secrets.token_bytes(8), sampled, baggage)
+def generate_span_id() -> bytes:
+    return secrets.token_bytes(8)
+
+
+def generate_trace_id() -> bytes:
+    return secrets.token_bytes(16)
