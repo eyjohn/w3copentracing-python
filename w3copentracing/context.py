@@ -9,14 +9,14 @@ class SpanContext(opentracing.SpanContext):
     """W3C compatible SpanContext satisfies the opentracing.SpanContext contract.
 
     This object consists of:
-    - trace_id of 16 bytes
-    - span_id if 8 bytes
+    - trace_id of 16 bytes (printed as hex)
+    - span_id if 8 bytes (printed as hex)
     - sampled flag as a boolean
     - dict of baggage key, value pairs
     """
 
-    trace_id: bytes
-    span_id: bytes
+    trace_id: bytes = b""
+    span_id: bytes = b""
     sampled: bool = True
     baggage: Optional[Dict[str, str]] = None
 
