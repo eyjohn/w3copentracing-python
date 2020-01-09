@@ -1,4 +1,5 @@
 import opentracing
+import secrets
 from typing import Optional, Dict
 from dataclasses import dataclass
 
@@ -18,3 +19,15 @@ class SpanContext(opentracing.SpanContext):
     span_id: bytes
     sampled: bool = True
     baggage: Optional[Dict[str, str]] = None
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}'
+                f'(trace_id={self.trace_id.hex().upper()!r},'
+                f' span_id={self.span_id.hex().upper()!r},'
+                f' sampled={self.sampled!r},'
+                f' baggage={self.baggage!r})')
+
+
+def generate(sampled: bool = True,
+             baggage: Optional[Dict[str, str]] = None):
+    return SpanContext(secrets.token_bytes(16), secrets.token_bytes(8), sampled, baggage)
